@@ -1,12 +1,12 @@
 const url = {
-    login:'http://159.89.118.97:1337/api/auth/local',
-    changePass:'http://159.89.118.97:1337/api/change-password',
-    getClients:'http://159.89.118.97:1337/api/clients',
-    getVendors:'http://159.89.118.97:1337/api/vendors',
-    getCategories:'http://159.89.118.97:1337/api/categories',
-    getStates:'http://159.89.118.97:1337/api/states',
-    base:'http://159.89.118.97:1337/api/',
-    admin:'http://159.89.118.97:1337/admin'
+    login:'https://flagit.tk/api/auth/local',
+    changePass:'https://flagit.tk/api/change-password',
+    getClients:'https://flagit.tk/api/clients',
+    getVendors:'https://flagit.tk/api/vendors',
+    getCategories:'https://flagit.tk/api/categories',
+    getStates:'https://flagit.tk/api/states',
+    base:'https://flagit.tk/api/',
+    admin:'http://flagit.tk/admin'
 }
 
 export default url;
