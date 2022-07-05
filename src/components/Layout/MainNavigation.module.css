@@ -1,0 +1,161 @@
+@import '../UI/vars.css';
+
+.header {
+  color: white;
+  background-image: linear-gradient(to left, var(--color-seven) 0%, var(--color-eight) 120%);
+}
+
+
+.navContainer {
+  margin: auto;
+  width: 90%;
+  max-width: 1280px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.logo {
+  color: white;
+}
+
+.logo:hover span{
+  transition: all 0.3s linear;
+}
+
+.logo:hover span{
+  color: var(--color-four);
+}
+
+
+.header ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  padding: 1rem 0;
+  /* padding: 1rem; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 1000;
+  justify-content: stretch;
+  right: 0;
+  top: 2.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  min-width: 12rem;
+  box-shadow: 1px 10px 10px rgba(128, 128, 128, 0.219);
+}
+
+.header ul li {
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  margin-right: auto;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s linear;
+}
+
+.header ul li svg{
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -0.1rem;
+}
+
+.header ul li:hover{
+  cursor: pointer;
+  background-color: whitesmoke;
+}
+
+.header ul li:hover a{
+  color: #334dac;
+}
+
+.header ul li a{
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  font-size: inherit;
+  color: rgb(60, 60, 60);
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+
+  /* background-color: aqua; */
+}
+
+.header ul li button{
+  font-size: inherit;
+  color: rgb(60, 60, 60);
+  background-color: transparent;
+  border: none;
+}
+
+.DropDownButton{
+  font-size: 2rem;
+  background-color: transparent;
+  color: var(--color-four);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all linear 0.3s;
+  animation: moveInFromLeft 1s forwards;
+}
+
+.DropDownButtont{
+  font-size: 2rem;
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all linear 0.3s;
+  animation: moveInFromLeft 1s forwards;
+}
+
+.DropDownButton:hover,
+.DropDownButton:active,
+.DropDownButtont:hover,
+.DropDownButtont:active{
+  color: var(--color-four);
+
+}
+
+.header nav {
+  position: relative;
+}
+
+.header a {
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s linear;
+}
+
+
+.header a:hover {
+
+}
+
+.header button:hover {
+
+}
+
+@keyframes moveInFromLeft {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+

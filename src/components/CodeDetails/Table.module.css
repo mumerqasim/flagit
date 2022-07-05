@@ -1,0 +1,60 @@
+.Table {
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 90%;
+    margin: auto;
+    border-spacing: 0;
+    border: 1px solid rgb(149, 142, 142);
+    border-radius: 5px;
+    color: rgb(46, 45, 45);
+}
+
+.Table .theader {
+    border-right: none;
+}
+
+th, td {
+  border-bottom: 1px solid rgb(149, 142, 142);
+  padding: 0.25rem 0.25rem;
+  text-align: left;
+}
+
+/* .Table tr:last-child td:first-child {
+    border: 1px solid rgb(149, 142, 142);
+    border-bottom-left-radius: 10px;
+}
+
+.Table tr:last-child td:last-child {
+    border: 1px solid rgb(149, 142, 142);
+    border-bottom-right-radius: 10px;
+} */
+
+.copyButton {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    cursor: pointer;
+    padding: 0.2rem 1rem;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid grey;
+    color: rgb(46, 45, 45);
+    transition: all 0.3s linear;
+}
+
+.copyButton:hover{
+    color:#334dac;
+    border: 1px solid #334dac;
+}
+
+.copied{
+    position: absolute;
+    right: 1.3rem;
+    top: 0.9rem;
+    color: rgb(46, 45, 45);
+    font-weight: 500;
+}
+
+.copied svg {
+    margin-bottom: -0.15rem;
+}

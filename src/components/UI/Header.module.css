@@ -1,0 +1,16 @@
+.Nav {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    background-image: linear-gradient(to left, #48c6ef 0%, #6f86d6 100%);
+}
+
+.Nav h1 {
+    font-size: 2rem;
+}
+
+.LoginButton {
+    
+}
