@@ -16,7 +16,7 @@ const Feed = props => {
     const authCtx = useContext(AuthContext);
     let listItems=[];
     let totalCount=0;
-    const {client,vendor, category} = props;
+    const {client,vendor, category, state} = props;
     let url=urls.base+'codes?filters';
     const headers = {'Authorization': `Bearer ${authCtx.token}`,'Content-Type':'application/json'}
     if(category){
@@ -26,6 +26,9 @@ const Feed = props => {
         }
         if(vendor){
             url+=`&filters[vendor][title][$eq]=${encodeURIComponent(vendor)}`;
+        }
+        if(state){
+            url+=`&filters[state][title][$eq]=${encodeURIComponent(state)}`;
         }
         url+=`&populate=*&sort=title`
     }
@@ -43,7 +46,7 @@ const Feed = props => {
         }
         if(category)
         fetchCodes(url);
-    },[props.client, props.vendor, props.category]);
+    },[props.client, props.vendor, props.category,props.state]);
 
     listItems = results ? results.data.map(item => ({id:item.id, title:item.attributes.title})) : [];
 
