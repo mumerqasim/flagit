@@ -35,7 +35,7 @@ const MainNavigation = () => {
   return (
     <header className={classes.header}>
       <div className={classes.navContainer}>
-      <Link to='/'>
+      <Link to='/flagit'>
         <h1 className={classes.logo}>Flag<span>it.</span></h1>
       </Link>
       <nav onClick={dropDownHandler} ref={menuRef}>
@@ -46,7 +46,7 @@ const MainNavigation = () => {
               <Link to='/change-password'><RiLockPasswordLine/> Change Password</Link>
             </li>
             <li>
-              <Link to='/home' onClick={logoutHandler}><RiLogoutCircleRLine/> Logout</Link>
+              <Link to='/flagit' onClick={logoutHandler}><RiLogoutCircleRLine/> Logout</Link>
             </li>
             {isAdmin && <li>
               <a href={urls.admin} target='_blank'><FiEdit/> Edit Db</a>
