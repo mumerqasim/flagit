@@ -44,10 +44,10 @@ const Dashboard = () => {
     const fetchState = async urls => {
       try{
         const[fetchedClients,fetchedVendors,fetchedCategories,fetchedStates] = await Promise.all([
-          fetch(urls.getClients,{method:'GET', headers:headers}).then(response => response.json()),
-          fetch(urls.getVendors,{method:'GET', headers:headers}).then(response => response.json()),
-          fetch(urls.getCategories,{method:'GET', headers:headers}).then(response => response.json()),
-          fetch(urls.getStates,{method:'GET', headers:headers}).then(response => response.json()),
+          fetch((urls.getClients+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()),
+          fetch((urls.getVendors+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()),
+          fetch((urls.getCategories+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()),
+          fetch((urls.getStates+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()),
         ])
         setClients(fetchedClients);
         setVendors(fetchedVendors);
@@ -56,14 +56,14 @@ const Dashboard = () => {
         setError(null);
       }catch(err){
         setError(err);
-        console.log(error);
       }
     }
     fetchState(urls);
   },[])
 
-  
-  console.log(currentCategory,currentClient,currentVendor,currentState);
+  useEffect(() => {
+    currentCategory && currentCategory.value!=='Region' && setCurrentState('') 
+  },[currentCategory]); 
 
 
   const dropDowns = (

@@ -97,12 +97,13 @@
     min-height: 70%;
     max-height: 90%;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
     padding: 0.5rem 0rem;
 }
 
 .listContainer::-webkit-scrollbar {
     width: 5px; /* Mostly for vertical scrollbars */
+    height: 10px;
 }
 .listContainer::-webkit-scrollbar-thumb { /* Foreground */
     background: #999;

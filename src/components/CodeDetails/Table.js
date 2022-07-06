@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './Table.module.css';
 import {FcOk} from 'react-icons/fc'
 const Table = props => {
-    let rows= props.definition.split('\n');
-    rows = rows.map(str => str.replace('-','|'))
-    rows = rows.map(str => str.split('|'));
+    const [tableData, setTableData] = useState([]);
     const [copied,setCopied] = useState(false);
     const copyTable = () => {
         const elTable = document.querySelector('table');
-        
         let range, sel;
-        
         // Ensure that range and selection are supported by the browsers
         if (document.createRange && window.getSelection) {
         
@@ -37,11 +33,16 @@ const Table = props => {
         },2500)
     }
 
+    useEffect(() => {
+        let rows = props.definition.split('\n');
+        rows = rows.map(str => str.replace('-','|'))
+        rows = rows.map(str => str.split('|'));
+        setTableData(rows);
+    },[props.definition])
 
     return (
         <React.Fragment>
         {!copied ? <button className={classes.copyButton} onClick={copyTable}>Copy</button>: <div className={classes.copied}><FcOk/> Copied</div>}
-
         <table className={classes.Table}>
             <thead>
                 <tr>
@@ -51,7 +52,7 @@ const Table = props => {
                 </tr>
             </thead>
             <tbody>
-                {rows.map((row,ind) => <tr key={ind}><td>{row[1].trim()}</td><td></td><td>{row[0].trim()}</td></tr>)}
+                { tableData.map((row,ind) => { return (tableData.length>1 ? <tr key={ind}><td>{row[1].trim()}</td><td></td><td>{row[0].trim()}</td></tr> : <tr key={1}><td>{tableData[0]}</td></tr>)})}
             </tbody>
         </table>
         </React.Fragment>

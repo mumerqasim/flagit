@@ -31,6 +31,7 @@ const CodeDetails = props => {
           try {
             range.selectNodeContents(elCode);
             sel.addRange(range);
+            
           } catch (e) {
             range.selectNode(elCode);
             sel.addRange(range);
@@ -45,7 +46,6 @@ const CodeDetails = props => {
             setCopied(false);
         },2500)
     }
-
     
     return (
         <div className={classes.detailsGrid}>

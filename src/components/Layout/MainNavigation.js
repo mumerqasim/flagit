@@ -46,7 +46,7 @@ const MainNavigation = () => {
               <Link to='/change-password'><RiLockPasswordLine/> Change Password</Link>
             </li>
             <li>
-              <Link to='/' onClick={logoutHandler}><RiLogoutCircleRLine/> Logout</Link>
+              <Link to='/home' onClick={logoutHandler}><RiLogoutCircleRLine/> Logout</Link>
             </li>
             {isAdmin && <li>
               <a href={urls.admin} target='_blank'><FiEdit/> Edit Db</a>

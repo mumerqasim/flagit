@@ -13,7 +13,7 @@ function App() {
   return (
     <Layout>
       <Switch>
-        <Route path='/' exact>
+        <Route path='/home' exact>
           {authCtx.isLoggedIn && <HomePage />}
           {!authCtx.isLoggedIn && <Redirect to='/auth' />}
         </Route>
@@ -31,7 +31,7 @@ function App() {
           {/* {!authCtx.isLoggedIn && <Redirect to='/auth' />} */}
         </Route>
         <Route path='*'>
-          <Redirect to='/' />
+          <Redirect to='/home' />
         </Route>
       </Switch>
     </Layout>
