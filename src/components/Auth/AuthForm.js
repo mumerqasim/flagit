@@ -24,7 +24,6 @@ const AuthForm = () => {
     .min(7,'Password must be at least 7 characters')
     .required('Password is required')
   });
-  console.log(isLoading);
   return (
     <section className={classes.auth}>
       <Formik
