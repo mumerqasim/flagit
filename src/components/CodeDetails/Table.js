@@ -58,7 +58,14 @@ const Table = props => {
                 { tableData.map((row,ind) => { return (tableData.length>1 ? ((row.length>1) ? <tr key={ind}><td>{row[1].trim()}</td><td></td><td>{row[0].trim()}</td></tr> : (row[0] ? <tr><td>{row[0].trim()}</td><td></td><td></td></tr> : null)) : <tr key={1}><td>{tableData[0]}</td></tr>)})}
             </tbody>
         </table>
-        <table id='copyTable' style={{position:'absolute',top:0,zIndex:-1000,opacity:0,fontSize:'22px',border:'none',backgroundColor:'transparent'}}>
+        <table id='copyTable' style={{
+            position:'absolute',
+            top:0,zIndex:-1000,
+            opacity:0,
+            fontSize:'22px',
+            border:'none',
+            backgroundColor:'transparent',
+            fontFamily:'Calibri, sans-serif'}}>
             <thead>
                 <tr>
                     <th style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}>{props.title}</th>
