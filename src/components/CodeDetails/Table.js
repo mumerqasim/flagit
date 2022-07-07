@@ -62,19 +62,19 @@ const Table = props => {
             position:'absolute',
             top:0,zIndex:-1000,
             opacity:0,
-            fontSize:'22px',
+            fontSize:'11pt',
             border:'none',
             backgroundColor:'transparent',
             fontFamily:'Calibri, sans-serif'}}>
             <thead>
                 <tr>
-                    <th style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}>{props.title}</th>
-                    <th style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}></th>
-                    <th style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}></th>
+                    <th style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{props.title}</th>
+                    <th style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></th>
+                    <th style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></th>
                 </tr>
             </thead>
             <tbody>
-                { tableData.map((row,ind) => { return (tableData.length>1 ? ((row.length>1) ? <tr key={ind}><td style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}>{row[1].trim()}</td><td style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}></td><td style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}>{row[0].trim()}</td></tr> : (row[0] ? <tr style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}><td style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}>{row[0].trim()}</td><td style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}></td><td style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}></td></tr> : null)) : <tr key={1}><td style={{whiteSpace: 'nowrap',fontSize:'22px',border:'none',backgroundColor:'transparent'}}>{tableData[0]}</td></tr>)})}
+                { tableData.map((row,ind) => { return (tableData.length>1 ? ((row.length>1) ? <tr key={ind}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[1].trim()}</td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[0].trim()}</td></tr> : (row[0] ? <tr style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[0].trim()}</td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td></tr> : null)) : <tr key={1}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{tableData[0]}</td></tr>)})}
             </tbody>
         </table>
         </React.Fragment>
