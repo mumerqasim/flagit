@@ -87,7 +87,7 @@
     background-color: white;
     border-radius: 1rem;
     overflow: hidden;
-    padding: 1rem;
+    padding: 1rem 1rem 2rem 1rem;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.05);
     border: 1px solid #00000016;
 }
@@ -113,6 +113,10 @@
     background: #00000016;
 }
 
+.notesPadding.listContainer{
+    max-height: 85%;
+}
+
 .copyButton {
     position: absolute;
     top: 0.85rem;
@@ -121,12 +125,52 @@
     padding: 0.2rem 1rem;
     border-radius: 5px;
     background-color: transparent;
-    border: 1px solid grey;
+    border: 1px solid rgba(128, 128, 128, 0.256);
     color: rgb(46, 45, 45);
     transition: all 0.3s linear;
 }
 
 .copyButton:hover{
+    color:#334dac;
+    border: 1px solid #334dac;
+}
+
+.ucbutton{
+    position: absolute;
+    top: 0.85rem;
+    /* transform: scale(1.1); */
+    min-height: 1.5rem;
+    min-width: 4rem;
+    padding: 0.15rem 1.3rem;
+    right: 6.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: transparent;
+    border: none;
+    border: 1px solid rgba(128, 128, 128, 0.256);
+    color: rgb(46, 45, 45);
+    transition: all 0.3s linear;
+}
+
+.ucbutton span {
+    position: absolute;
+    top: 50%;
+    transform: scale(1.2) translate(0,-40%);
+    margin-left: -0.2rem;
+}
+
+.ucbutton svg {
+    position: absolute;
+    top: 50%;
+    transform: scale(1.2) translate(-80%,-60%);    
+}
+
+.ucbutton.active span {
+   font-weight: bold;
+}
+
+
+.ucbutton.active, .ucbutton:hover{
     color:#334dac;
     border: 1px solid #334dac;
 }
@@ -143,6 +187,15 @@
     margin-bottom: -0.15rem;
 }
 
+
+.codeTransform span[style="color: rgb(80, 161, 79);"]{
+    text-transform: uppercase;
+}
+
+.noteLink{
+    display: block;
+    padding: 0.1rem;
+}
 
 @media (max-width: 768px) {
     .detailsGrid{

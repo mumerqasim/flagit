@@ -1,5 +1,6 @@
 .dashContainer{
   display: flex;
+  position: relative;
   align-items: center;
   max-width: 100%;
   margin: auto;
@@ -76,6 +77,41 @@
   margin: auto;
   font-weight: 500;
 }
+
+.reset{
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.35rem 1rem;
+  background-color: #334dac;
+  z-index: 100;
+  border-bottom-left-radius: 1rem;
+  background-color: transparent;
+  border-left: 1px solid rgba(128, 128, 128, 0.256);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.256);
+  color: rgb(94, 93, 93);
+  transition: all linear 0.3s;
+}
+
+.reset svg {
+  margin-bottom: -0.1rem;
+  fill: rgb(94, 93, 93);
+  transform: scale(1.1);
+  margin-right:-0.1rem;
+  transition: all linear 0.2s;
+  /* display: none; */
+}
+
+.reset:hover{
+  cursor: pointer;
+  color: #334dac;
+}
+
+.reset:hover svg{
+  fill: #334dac;
+  transform: scale(1.1) rotate(360deg);
+}
+
 
 @keyframes moveInFromLeft {
   0% {

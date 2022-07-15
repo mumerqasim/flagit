@@ -37,7 +37,7 @@ th, td {
     padding: 0.2rem 1rem;
     border-radius: 5px;
     background-color: transparent;
-    border: 1px solid grey;
+    border: 1px solid rgba(128, 128, 128, 0.256);
     color: rgb(46, 45, 45);
     transition: all 0.3s linear;
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import classes from './Feed.module.css';
 import urls from '../../store/urls';
 import AuthContext from '../../store/auth-context';
@@ -15,11 +15,11 @@ const Feed = props => {
     const [isLoading, setIsLoading] = useState(false);
     const authCtx = useContext(AuthContext);
     let listItems=[];
-    let totalCount=0;
     const {client,vendor, category, state} = props;
-    let url=urls.base+'codes?filters';
+    let url='';
     const headers = {'Authorization': `Bearer ${authCtx.token}`,'Content-Type':'application/json'}
     if(category){
+        url=urls.base+'codes?filters';
         url+=`[category][title][$eq]=${category}`;
         if(client){
             url+=`&filters[client][title][$eq]=${encodeURIComponent(client)}`;
@@ -44,8 +44,12 @@ const Feed = props => {
 
             }
         }
-        if(category)
-        fetchCodes(url);
+        if(category){
+            fetchCodes(url);
+        }else{
+            setResults(null);
+        }
+        
     },[props.client, props.vendor, props.category,props.state]);
 
     listItems = results ? results.data.map(item => ({id:item.id, title:item.attributes.title})) : [];
@@ -57,12 +61,12 @@ const Feed = props => {
 
     return (
         <section>
-            {results ?  (<div className={classes.feedContainer}>
+            {results && (category)  ?  (<div className={classes.feedContainer}>
                 <div className={classes.codesList}>
                     {isLoading ? <div className={classes.spinnerContainer}><Spinner/></div> :<CodeList list={listItems} selected={currentItem} onSelection={selectionChangedHandler}/>}
                 </div>
                 <div className={classes.detailsContainer}>
-                    {!currentItem ? ((listItems.length>0) ? <div className={classes.detailFallback}><div className={classes.animationContainer}><SelectItem/></div><div>Select an item from the list ...</div></div>:<div className={classes.detailFallback}><div className={classes.animationContainer}><LandedNowhere/></div><div>Hmm... Our search landed nowhere</div></div>) : <CodeDetails selected={results && results.data.filter((item)=>item.id===currentItem)}/>}
+                    {!currentItem ? ((listItems.length>0) ? <div className={classes.detailFallback}><div className={classes.animationContainer}><SelectItem style={{transform:'scale(1.3)'}}/></div><div>Select an item from the list ...</div></div>:<div className={classes.detailFallback}><div className={classes.animationContainer}><LandedNowhere/></div><div>Hmm... Our search landed nowhere</div></div>) : <CodeDetails selected={results && results.data.filter((item)=>item.id===currentItem)}/>}
                 </div>
             </div>) : <div className={classes.feedContainern}><div className={classes.animationContainer}><StartSearch/></div><div>Start your search by selecting a flag ...</div></div>}
         </section>

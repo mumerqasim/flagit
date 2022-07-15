@@ -1,5 +1,4 @@
 import classes from './Dashboard.module.css';
-import SelectInput from '../UI/SelectInput';
 import RSelect from '../UI/RSelect';
 import React, { useContext, useEffect, useState } from 'react';
 import Spinner from '../UI/Spinner';
@@ -7,6 +6,7 @@ import urls from '../../store/urls';
 import AuthContext from '../../store/auth-context';
 import Feed from '../Feed/Feed';
 import {MdOutlineCategory, MdOutlinePersonSearch, MdOutlineLocationOn, MdLink} from 'react-icons/md';
+import {MdOutlineRefresh} from 'react-icons/md';
 import {FcHighPriority} from 'react-icons/fc';
 
 
@@ -22,7 +22,6 @@ const Dashboard = () => {
   const [currentVendor,setCurrentVendor] = useState('');
   const [currentCategory,setCurrentCategory] = useState('');
   const [currentState,setCurrentState] = useState('');
-
   const headers = {'Authorization': `Bearer ${authCtx.token}`,'Content-Type':'application/json'}
   const transformer = arr => {
     if (arr){
@@ -33,10 +32,97 @@ const Dashboard = () => {
     }
   }
 
+  const categorySort = (arr) => {
+    if(arr){
+      // console.log(arr);
+      let sortedArr = [];
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'firstname'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'lastname'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'email'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'token'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'phone'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'phonetype'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'cluster'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'gender'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'age'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'party'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'ethnicity'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'mode'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'sampletype'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      sortedArr=[...sortedArr,...arr];
+      return sortedArr;
+    }
+  }
+
   const initialValues = {
     client:transformer(clients),
     vendor:transformer(vendors),
-    category:transformer(categories),
+    category:categorySort(transformer(categories)),
     state:transformer(states)
   }
 
@@ -58,13 +144,24 @@ const Dashboard = () => {
         setError(err);
       }
     }
+    if(!(clients && categories && vendors && states))
     fetchState(urls);
-  },[])
+  },[clients,categories,vendors,states])
 
   useEffect(() => {
     currentCategory && currentCategory.value!=='Region' && setCurrentState('') 
   },[currentCategory]); 
 
+  const resetHandler = () => {
+    setClients(null);
+    setVendors(null);
+    setCategories(null);
+    setStates(null);
+    setCurrentClient('');
+    setCurrentVendor('');
+    setCurrentCategory('');
+    setCurrentState('');
+  }
 
   const dropDowns = (
     <React.Fragment>
@@ -81,6 +178,7 @@ const Dashboard = () => {
       <form className={classes.formContainer}>
         {!error && clients && vendors && categories ? dropDowns : (!error ? <Spinner/> : <div className={classes.error}> <FcHighPriority/> Something went wrong!</div>)}
       </form>
+      {(currentCategory || currentClient || currentVendor) && <div className={classes.reset} onClick={resetHandler}><MdOutlineRefresh/> Reset</div>}
     </section>
     <Feed client={currentClient && currentClient.value} vendor={currentVendor && currentVendor.value} category={currentCategory && currentCategory.value} state={currentState && currentState.value}/>
     </React.Fragment>
