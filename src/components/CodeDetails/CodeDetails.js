@@ -71,7 +71,7 @@ const CodeDetails = (props) => {
     // let linkEx = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g
     let linkEx = /(?:(?:https?|ftp|file):\/\/|www\.|ftp\.)(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#\/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#\/%=~_|$?!:,.]*\)|[A-Z0-9+&@#\/%=~_|$])/igm
     let matches = notes && notes.match(linkEx);
-    console.log(matches);
+    // console.log(matches);
     if(matches && matches.length>0){
         let parts = notes.split(linkEx);
         console.log(parts);
