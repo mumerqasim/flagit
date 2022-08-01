@@ -37,13 +37,7 @@ const Dashboard = () => {
       // console.log(arr);
       let sortedArr = [];
       for(let i=0; i<arr.length; i++){
-        if(arr[i].value.toLowerCase() === 'firstname'){
-          sortedArr.push(arr[i]);
-          arr.splice(i,1);
-        }
-      }
-      for(let i=0; i<arr.length; i++){
-        if(arr[i].value.toLowerCase() === 'lastname'){
+        if(arr[i].value.toLowerCase() === 'name'){
           sortedArr.push(arr[i]);
           arr.splice(i,1);
         }
@@ -61,7 +55,7 @@ const Dashboard = () => {
         }
       }
       for(let i=0; i<arr.length; i++){
-        if(arr[i].value.toLowerCase() === 'phone'){
+        if(arr[i].value.toLowerCase() === 'phone & phonetype'){
           sortedArr.push(arr[i]);
           arr.splice(i,1);
         }
@@ -119,11 +113,26 @@ const Dashboard = () => {
     }
   }
 
+  const stateSort = (arr) => {
+    if(arr){
+      // console.log(arr);
+      let sortedArr = [];
+      for(let i=0; i<arr.length; i++){
+        if(arr[i].value.toLowerCase() === 'national'){
+          sortedArr.push(arr[i]);
+          arr.splice(i,1);
+        }
+      }
+      sortedArr=[...sortedArr,...arr];
+      return sortedArr;
+    }
+  }
+
   const initialValues = {
     client:transformer(clients),
     vendor:transformer(vendors),
     category:categorySort(transformer(categories)),
-    state:transformer(states)
+    state:stateSort(transformer(states))
   }
 
   useEffect(() => {

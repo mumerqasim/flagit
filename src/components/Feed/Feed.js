@@ -20,7 +20,7 @@ const Feed = props => {
     const headers = {'Authorization': `Bearer ${authCtx.token}`,'Content-Type':'application/json'}
     if(category){
         url=urls.base+'codes?filters';
-        url+=`[category][title][$eq]=${category}`;
+        url+=`[category][title][$eq]=${encodeURIComponent(category)}`;
         if(client){
             url+=`&filters[client][title][$eq]=${encodeURIComponent(client)}`;
         }
