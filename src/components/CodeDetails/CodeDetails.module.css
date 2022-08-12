@@ -101,6 +101,30 @@
     padding: 0.5rem 0rem;
 }
 
+.editCode{
+    font-size: 0.9rem;
+    display: block;
+    position: absolute;
+    top: 0.85rem;
+    right: 12rem;
+    cursor: pointer;
+    padding: 0.075rem 1.1rem;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid rgba(128, 128, 128, 0.256);
+    color: rgb(46, 45, 45);
+    transition: all 0.3s linear;
+}
+
+a{
+    text-decoration: none;
+}
+
+.editCode:hover{
+    color:#334dac;
+    border: 1px solid #334dac;
+}
+
 .listContainer::-webkit-scrollbar {
     width: 5px; /* Mostly for vertical scrollbars */
     height: 10px;

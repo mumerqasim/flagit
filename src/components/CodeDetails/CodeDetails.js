@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import classes from "./CodeDetails.module.css";
+import AuthContext from '../../store/auth-context';
 import { FcOk } from "react-icons/fc";
 import { BiUpArrowAlt } from "react-icons/bi";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -14,6 +15,7 @@ import {
 } from "react-icons/md";
 
 const CodeDetails = (props) => {
+  const authCtx = useContext(AuthContext);
   SyntaxHighlighter.registerLanguage("sas", sas);
   const {
     code,
@@ -85,7 +87,6 @@ const CodeDetails = (props) => {
   }
 
   notesSection(notes);
-
   return (
     <div className={classes.detailsGrid}>
       <div className={classes.codeCard}>
@@ -100,6 +101,7 @@ const CodeDetails = (props) => {
           </div>
         )}
         <button title="Uppercase Strings" className={classes.ucbutton + ` ${upperCase && classes.active}`} onClick={upperCaseHandler}><BiUpArrowAlt/><span>A</span></button>
+        {authCtx.isAdmin ? <a className={classes.editCode} href={`https://flagit.tk/admin/content-manager/collectionType/api::code.code/${props.selected[0].id}`} target="_blank">Edit</a>:null}
         <SyntaxHighlighter
           className={classes.listContainer + ` ${upperCase && classes.codeTransform}`}
           customStyle={{
