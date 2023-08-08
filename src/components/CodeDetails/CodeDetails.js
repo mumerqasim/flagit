@@ -150,7 +150,7 @@ const CodeDetails = (props) => {
       <div className={classes.definitionCard}>
         <h4>Definition</h4>
         <div className={classes.listContainer}>
-          <Table definition={definition} title={category} />
+          <Table definition={definition} title={category} id={props.selected[0].id} />
         </div>
       </div>
       <div className={classes.noteCard}>

@@ -137,20 +137,29 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchState = async urls => {
+      let checkClients,checkVendors,checkCategories,checkStates;
       try{
         const[fetchedClients,fetchedVendors,fetchedCategories,fetchedStates] = await Promise.all([
-          fetch((urls.getClients+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()),
-          fetch((urls.getVendors+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()),
-          fetch((urls.getCategories+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()),
-          fetch((urls.getStates+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()),
+          fetch((urls.getClients+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()).catch(e => e),
+          fetch((urls.getVendors+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()).catch(e => e),
+          fetch((urls.getCategories+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()).catch(e => e),
+          fetch((urls.getStates+`?sort=title`),{method:'GET', headers:headers}).then(response => response.json()).catch(e => e),
         ])
         setClients(fetchedClients);
+        checkClients=fetchedClients;
         setVendors(fetchedVendors);
+        checkVendors=fetchedVendors;
         setCategories(fetchedCategories);
+        checkCategories=fetchedCategories;
         setStates(fetchedStates);
+        checkStates=fetchedStates;
         setError(null);
       }catch(err){
         setError(err);
+      }finally{
+        if((checkClients.error || checkCategories.error || checkVendors.error || checkStates.error)){
+          authCtx.logout();
+        }
       }
     }
     if(!(clients && categories && vendors && states))

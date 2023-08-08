@@ -36,26 +36,35 @@ const Table = props => {
 
     useEffect(() => {
         let rows = props.definition.split('\n');
-        rows = rows.map(str => str.replace('-','|'))
-        rows = rows.map(str => str.split('|'));
+        if(rows.length>1){
+            let header=rows[0];
+            rows.splice(0,1);
+            rows = rows.map(str => str.replace('-','|'))
+            rows = rows.map(str => str.split('|'));
+            rows.splice(0,0,header);
+        }
         setTableData(rows);
-    },[props.definition])
+    },[props.definition,props.id])
 
-    
         
     return (
         <React.Fragment>
         {!copied ? <button className={classes.copyButton} onClick={copyTable}>Copy</button>: <div className={classes.copied}><FcOk/> Copied</div>}
         <table className={classes.Table}>
             <thead>
-                <tr>
-                    <th className={classes.theader}>{props.title}</th>
+                {tableData.length>1 && <tr>
+                    <th className={classes.theader}>{tableData[0]}</th>
                     <th></th>
                     <th></th>
-                </tr>
+                </tr>}
             </thead>
             <tbody>
-                { tableData.map((row,ind) => { return (tableData.length>1 ? ((row.length>1) ? <tr key={ind}><td>{row[1].trim()}</td><td></td><td>{row[0].trim()}</td></tr> : (row[0] ? <tr key={Math.random().toString()}><td>{row[0].trim()}</td><td></td><td></td></tr> : null)) : <tr key={Math.random().toString()}><td>{tableData[0]}</td></tr>)})}
+                { tableData.length>1 ? tableData.slice(1).map((row,ind) => { 
+                    return (tableData.length>1 ? 
+                    ((row.length>1) ? <tr key={ind}><td>{row[1].trim()}</td><td></td><td>{row[0].trim()}</td></tr> : 
+                    (row[0] ? <tr key={Math.random().toString()}><td>{row[0].trim()}</td><td></td><td></td></tr> : null)) : 
+                    <tr key={Math.random().toString()}><td>{tableData[0]}</td></tr>)}) : <tr key={Math.random().toString()}><td>{tableData[0]}</td></tr>
+                }
             </tbody>
         </table>
         <table id='copyTable' style={{
@@ -67,14 +76,17 @@ const Table = props => {
             backgroundColor:'transparent',
             fontFamily:'Calibri, sans-serif'}}>
             <thead>
-                <tr>
-                    <th style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{props.title}</th>
+                {tableData.length>1 && <tr>
+                    <th style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{tableData[0]}</th>
                     <th style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></th>
                     <th style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></th>
-                </tr>
+                </tr>}
             </thead>
             <tbody>
-                { tableData.map((row,ind) => { return (tableData.length>1 ? ((row.length>1) ? <tr key={ind}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[1].trim()}</td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[0].trim()}</td></tr> : (row[0] ? <tr style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[0].trim()}</td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td></tr> : null)) : <tr key={1}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{tableData[0]}</td></tr>)})}
+                { tableData.length>1 ? 
+                tableData.slice(1).map((row,ind) => { return (tableData.length>1 ? ((row.length>1) ? <tr key={ind}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[1].trim()}</td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[0].trim()}</td></tr> : 
+                (row[0] ? <tr style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{row[0].trim()}</td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}></td></tr> : null)) 
+                : <tr key={1}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{tableData[0]}</td></tr>)}) : <tr key={1}><td style={{whiteSpace: 'nowrap',fontSize:'11pt',border:'none',backgroundColor:'transparent'}}>{tableData[0]}</td></tr>}
             </tbody>
         </table>
         </React.Fragment>
