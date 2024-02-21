@@ -101,7 +101,7 @@ const CodeDetails = (props) => {
           </div>
         )}
         <button title="Uppercase Strings" className={classes.ucbutton + ` ${upperCase && classes.active}`} onClick={upperCaseHandler}><BiUpArrowAlt/><span>A</span></button>
-        {authCtx.isAdmin ? <a className={classes.editCode} href={`https://flagit.tk/admin/content-manager/collectionType/api::code.code/${props.selected[0].id}`} target="_blank">Edit</a>:null}
+        {authCtx.isAdmin ? <a className={classes.editCode} href={`https://flagit.online/admin/content-manager/collectionType/api::code.code/${props.selected[0].id}`} target="_blank">Edit</a>:null}
         <SyntaxHighlighter
           className={classes.listContainer + ` ${upperCase && classes.codeTransform}`}
           customStyle={{
